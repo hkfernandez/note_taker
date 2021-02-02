@@ -2,7 +2,7 @@ var express = require("express");
 var path = require("path");
 
 var app = express();
-var PORT = 3000;
+var PORT = 8080;
 
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
@@ -13,8 +13,8 @@ app.use(express.json());
 // =============================================================
 
 // Basic route that sends the user first to the AJAX Page
-app.get("/notes", function(req, res) {
-  res.sendFile(path.join(__dirname, "notes.html"));
+app.get("/", function(req, res) {
+  res.sendFile(path.join(__dirname, "index.html"));
 });
 
 app.get("/add", function(req, res) {
