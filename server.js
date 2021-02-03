@@ -32,30 +32,11 @@ app.get("/api/characters", function(req, res) {
 // returns list of notes
 app.get("/api/notes", function(req, res) {
       console.log('get request received');
-      // var chosen = req.params.character;
-      // console.log(__dirname+"/db/db.json");
       res.sendFile(path.join(__dirname, "/db/db.json"));
-      // fs.writeFile(__dirname, "/db/db.json", function() {
-            
-      // })
-
-
-      // return res.json();
-
-
-//   for (var i = 0; i < characters.length; i++) {
-//     if (chosen === characters[i].routeName) {
-//       return res.json(characters[i]);
-//     }
-//   }
-
-//   return res.json(false);
 });
 
 // posts new note to json db
 app.post("/api/notes", function(req, res) {
-  // req.body hosts is equal to the JSON post sent from the user
-  // This works because of our body parsing middleware
       var newNote = req.body;
       newNote.id = new Date();
       console.log('note with id ' +newNote);
@@ -68,19 +49,22 @@ app.post("/api/notes", function(req, res) {
             console.log('showing data'+noteData);
       })
       res.json(newNote);
-   
-
-      
-
-  // Using a RegEx Pattern to remove spaces from newCharacter
-//   newCharacter.routeName = newCharacter.name.replace(/\s+/g, "").toLowerCase();
-
-//   console.log(newCharacter);
-
-//   characters.push(newCharacter);
-
-//   res.json(newCharacter);
-});
+   });
+app.delete("/api/notes/:id", function(req, res) {
+      console.log('working');
+      console.log(req.params);
+      // newNote.id = new Date();
+      // console.log('note with id ' +newNote);
+      // let data = fs.readFileSync(__dirname+"/db/db.json")
+      // console.log(data);
+      // let noteList = JSON.parse(data);
+      // console.log(noteList);
+      // noteList.push(newNote);
+      // fs.writeFile(__dirname+"/db/db.json", JSON.stringify(noteList), (noteData)=>{
+      //       console.log('showing data'+noteData);
+      // })
+      // res.json(newNote);
+   });
 
 // Starts the server to begin listening
 // =============================================================
