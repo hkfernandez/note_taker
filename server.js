@@ -6,7 +6,7 @@ const indexRoutes = require('./public/routes/htmlRoutes.js');
 const apiRoutes = require('./public/routes/apiRoutes.js')
 
 const app = express();
-const PORT = 8080;
+const PORT = process.env.PORT || 3001;
 
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
