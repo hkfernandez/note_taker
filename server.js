@@ -1,5 +1,7 @@
 var express = require("express");
 var path = require("path");
+var fs = require('fs');
+// var fs = require ('fs');
 
 var app = express();
 var PORT = 8080;
@@ -27,35 +29,50 @@ app.get("/api/characters", function(req, res) {
   return res.json(characters);
 });
 
-// Displays a single character, or returns false
-app.get("/api/characters/:character", function(req, res) {
-  var chosen = req.params.character;
+// returns list of notes
+app.get("/api/notes", function(req, res) {
+      console.log('get request received');
+      // var chosen = req.params.character;
+      // console.log(__dirname+"/db/db.json");
+      res.sendFile(path.join(__dirname, "/db/db.json"));
+      // fs.writeFile(__dirname, "/db/db.json", function() {
+            
+      // })
 
-  console.log(chosen);
 
-  for (var i = 0; i < characters.length; i++) {
-    if (chosen === characters[i].routeName) {
-      return res.json(characters[i]);
-    }
-  }
+      // fs.readFile(__dirname+"/db/db.json", JSON.stringify(data), (err) => {
+      //       if (err) {
+      //             throw err;
+      //       }
+      //       console.log('file sent');
+      // })
+      // return res.json();
 
-  return res.json(false);
+
+//   for (var i = 0; i < characters.length; i++) {
+//     if (chosen === characters[i].routeName) {
+//       return res.json(characters[i]);
+//     }
+//   }
+
+//   return res.json(false);
 });
 
 // posts new note to json db
-app.post("/api/post", function(req, res) {
+app.post("/api/notes", function(req, res) {
   // req.body hosts is equal to the JSON post sent from the user
   // This works because of our body parsing middleware
-  var newNote = req.body;
-console.log(newNote);
+      var newNote = req.body;
+      console.log(newNote);
+
   // Using a RegEx Pattern to remove spaces from newCharacter
-  newCharacter.routeName = newCharacter.name.replace(/\s+/g, "").toLowerCase();
+//   newCharacter.routeName = newCharacter.name.replace(/\s+/g, "").toLowerCase();
 
-  console.log(newCharacter);
+//   console.log(newCharacter);
 
-  characters.push(newCharacter);
+//   characters.push(newCharacter);
 
-  res.json(newCharacter);
+//   res.json(newCharacter);
 });
 
 // Starts the server to begin listening
