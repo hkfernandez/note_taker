@@ -6,6 +6,7 @@ var PORT = 8080;
 
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
+app.use(express.static('public'));
 
 
 
@@ -41,12 +42,12 @@ app.get("/api/characters/:character", function(req, res) {
   return res.json(false);
 });
 
-// Create New Characters - takes in JSON input
-app.post("/api/characters", function(req, res) {
+// posts new note to json db
+app.post("/api/post", function(req, res) {
   // req.body hosts is equal to the JSON post sent from the user
   // This works because of our body parsing middleware
-  var newCharacter = req.body;
-
+  var newNote = req.body;
+console.log(newNote);
   // Using a RegEx Pattern to remove spaces from newCharacter
   newCharacter.routeName = newCharacter.name.replace(/\s+/g, "").toLowerCase();
 
