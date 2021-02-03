@@ -40,12 +40,6 @@ app.get("/api/notes", function(req, res) {
       // })
 
 
-      // fs.readFile(__dirname+"/db/db.json", JSON.stringify(data), (err) => {
-      //       if (err) {
-      //             throw err;
-      //       }
-      //       console.log('file sent');
-      // })
       // return res.json();
 
 
@@ -63,7 +57,20 @@ app.post("/api/notes", function(req, res) {
   // req.body hosts is equal to the JSON post sent from the user
   // This works because of our body parsing middleware
       var newNote = req.body;
-      console.log(newNote);
+      newNote.id = new Date();
+      console.log('note with id ' +newNote);
+      let data = fs.readFileSync(__dirname+"/db/db.json")
+      console.log(data);
+      let noteList = JSON.parse(data);
+      console.log(noteList);
+      noteList.push(newNote);
+      fs.writeFile(__dirname+"/db/db.json", JSON.stringify(noteList), (noteData)=>{
+            console.log('showing data'+noteData);
+      })
+      res.json(newNote);
+   
+
+      
 
   // Using a RegEx Pattern to remove spaces from newCharacter
 //   newCharacter.routeName = newCharacter.name.replace(/\s+/g, "").toLowerCase();
